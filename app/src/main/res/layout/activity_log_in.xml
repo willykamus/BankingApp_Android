@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogInActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp"
+        android:text="Sign In"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/account_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account number"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/field_tv_bg"
+            android:layout_marginTop="4dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:translationZ="10dp"
+            android:clickable="true"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/password_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/account_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot password?"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:clickable="true"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/field_tv_bg"
+            android:layout_marginTop="4dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:translationZ="10dp"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/password_field"
+        app:layout_constraintStart_toStartOf="@id/password_field"
+        app:layout_constraintEnd_toEndOf="@id/password_field"
+        android:layout_marginTop="24dp"
+        android:text="Sign In"
+        android:textColor="@drawable/button_text_color"
+        android:background="@drawable/login_btn_states"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/logInButton"
+        app:layout_constraintStart_toStartOf="@id/logInButton"
+        app:layout_constraintEnd_toEndOf="@id/logInButton"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/registerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create your account!"
+            android:textColor="@color/red"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

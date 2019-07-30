@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/reg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp"
+        android:text="Register"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/reg_account_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:paddingLeft="8dp"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/reg_emailET"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/field_tv_bg"
+            android:layout_marginTop="4dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:translationZ="10dp"
+            android:hint="Email:"
+            android:textSize="14dp"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reg_name_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_account_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:paddingLeft="8dp"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/reg_nameET"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/field_tv_bg"
+            android:layout_marginTop="4dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:translationZ="10dp"
+            android:hint="Name:"
+            android:textSize="14dp"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reg_password_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_name_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:paddingLeft="8dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/reg_passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/field_tv_bg"
+            android:layout_marginTop="4dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:translationZ="10dp"
+            android:hint="Password:"
+            android:padding="8dp"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_password_field"
+        app:layout_constraintStart_toStartOf="@id/reg_password_field"
+        app:layout_constraintEnd_toEndOf="@id/reg_password_field"
+        android:layout_marginTop="24dp"
+        android:text="Register"
+        android:textColor="@drawable/button_text_color"
+        android:background="@drawable/login_btn_states" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
