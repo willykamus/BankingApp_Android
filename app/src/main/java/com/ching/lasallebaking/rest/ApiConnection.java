@@ -1,9 +1,11 @@
 package com.ching.lasallebaking.rest;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ching.lasallebaking.model.form.ApiJson;
 import com.ching.lasallebaking.model.form.ClientForm;
+import com.ching.lasallebaking.model.form.FindClientForm;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -18,88 +20,97 @@ import java.util.Set;
 
 public class ApiConnection {
 
-    private ApiCallback apiCallback;
+    private ApiCallbackGet apiCallbackGet;
+    private ApiCallbackPost apiCallbackPost;
 
-    public ApiConnection(ApiCallback apiCallback) {
-        this.apiCallback = apiCallback;
+    public ApiConnection(ApiCallbackGet apiCallbackGet) {
+        this.apiCallbackGet = apiCallbackGet;
+    }
+
+    public ApiConnection(ApiCallbackPost apiCallbackPost) {
+        this.apiCallbackPost = apiCallbackPost;
     }
 
     public void createClient(ClientForm form) {
         new PostTaskJson<>(ClientForm.class).execute(form);
     }
 
-    public class GetTaskJson<T extends ApiJson> extends AsyncTask<T, Void, ResponseEntity<T>> {
+    public void findClientByEmail(FindClientForm form) {
+        new GetJsonTask<>(FindClientForm.class).execute(form);
+    }
 
-        private Class<T> tClass;
+    public class GetJsonTask<T extends ApiJson, E> extends AsyncTask<T, Void, ResponseEntity<E>> {
 
-        public GetTaskJson(Class<T> tClass) {
-            this.tClass = tClass;
+        private final Class<E> eClass;
+
+        public GetJsonTask(Class<E> eClass) {
+            this.eClass = eClass;
         }
 
         @Override
-        protected ResponseEntity<T> doInBackground(T... ts) {
+        protected ResponseEntity<E> doInBackground(T... ts) {
 
             String url = ts[0].getURL();
 
-            HttpHeaders httpHeaders = new HttpHeaders();
+            Log.d("URL", "doInBackground: " + url);
 
+            HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.set("Accept", "application/json");
 
-            HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
+            HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
 
             RestTemplate restTemplate = new RestTemplate(true);
 
             try {
-                return restTemplate.exchange(url, HttpMethod.GET, entity, tClass);
+                return restTemplate.exchange(url, HttpMethod.GET, httpEntity, eClass);
             } catch (RestClientException e) {
                 e.printStackTrace();
                 return null;
             }
-
         }
 
         @Override
-        protected void onPostExecute(ResponseEntity<T> responseEntity) {
-            apiCallback.onGetRequestResult(responseEntity.getStatusCode(),(Set<Object>) responseEntity.getBody());
+        protected void onPostExecute(ResponseEntity<E> responseEntity) {
+            apiCallbackGet.getResult(responseEntity);
         }
     }
 
-    public class PostTaskJson<T extends ApiJson> extends AsyncTask<T, Void, ResponseEntity<T>> {
+    public class PostTaskJson<T extends ApiJson, E> extends AsyncTask<T, Void, ResponseEntity<E>> {
 
-        private Class<T> tClass;
+        private Class<E> eClass;
+
         private JSONObject jsonObject;
 
-        public PostTaskJson(Class<T> tClass) {
-            this.tClass = tClass;
+        public PostTaskJson(Class<E> eClass) {
+            this.eClass = eClass;
         }
 
-
         @Override
-        protected ResponseEntity<T> doInBackground(T... ts) {
+        protected ResponseEntity<E> doInBackground(T... ts) {
 
             String url = ts[0].getURL();
-            this.jsonObject = ts[0].getJsonData();
+            jsonObject = ts[0].getJsonObject();
+
+            Log.d("URL", "doInBackground: " + url);
 
             HttpHeaders httpHeaders = new HttpHeaders();
-
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-            HttpEntity<String> httpEntity = new HttpEntity<>(this.jsonObject.toString(),httpHeaders);
+            HttpEntity<String> httpEntity = new HttpEntity<>(this.jsonObject.toString(), httpHeaders);
 
-            RestTemplate template = new RestTemplate(true);
+            RestTemplate restTemplate = new RestTemplate(true);
 
             try {
-                return template.exchange(url,HttpMethod.POST,httpEntity,tClass);
+                return restTemplate.exchange(url, HttpMethod.POST, httpEntity, eClass);
             } catch (RestClientException e) {
                 e.printStackTrace();
                 return null;
             }
-
         }
 
         @Override
-        protected void onPostExecute(ResponseEntity<T> responseEntity) {
-            apiCallback.onPostRequestResult(responseEntity.getStatusCode(), responseEntity.getBody());
+        protected void onPostExecute(ResponseEntity<E> responseEntity) {
+            apiCallbackPost.postResult(responseEntity);
         }
     }
 }

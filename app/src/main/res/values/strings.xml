@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LaSalleBaking</string>
+    <string name="findTeacherByEmailURL">"http://10.0.2.2:8080/lasalle/client?email="</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

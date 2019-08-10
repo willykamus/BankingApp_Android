@@ -1,6 +1,6 @@
 package com.ching.lasallebaking.model.form;
 
-import android.util.JsonReader;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,19 +11,29 @@ public class ClientForm implements ApiJson {
     private String password;
     private String name;
 
-    @Override
-    public String getURL() {
-        return "http://10.0.2.2:8080/client/create";
+    public ClientForm() {
+    }
+
+    public ClientForm(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
     }
 
     @Override
-    public JSONObject getJsonData() {
+    public String getURL() {
+        return "http://10.0.2.2:8080/lasalle/client/create";
+    }
+
+    @Override
+    public JSONObject getJsonObject() {
 
         JSONObject json = new JSONObject();
         try {
             json.put("email",this.email);
             json.put("password", this.password);
             json.put("name",this.name);
+            Log.d("JSON", "getJsonData: " + json);
         } catch (JSONException e) {
             e.printStackTrace();
         }

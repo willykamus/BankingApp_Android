@@ -1,12 +1,13 @@
 package com.ching.lasallebaking.rest;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Set;
 
-public interface ApiCallback {
+public interface ApiCallback<T> {
 
-    void onGetRequestResult(HttpStatus response, Set<Object> data);
-    void onPostRequestResult(HttpStatus response, Object data);
+    void onGetRequestResult(HttpStatus response, ResponseEntity<T> entity);
+    void onPostRequestResult(HttpStatus response, ResponseEntity<T> entity);
 
 }

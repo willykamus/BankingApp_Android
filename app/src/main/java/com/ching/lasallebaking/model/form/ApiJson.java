@@ -5,6 +5,6 @@ import org.json.JSONObject;
 public interface ApiJson {
 
     String getURL();
-    JSONObject getJsonData();
+    JSONObject getJsonObject();
 
 }
